@@ -1,19 +1,43 @@
-# ローカルに実行環境を用意
+# What you need
+
+1. AWS
+
+-   IAM for aws cli
+
+2. Local
+
+-   git
+-   docker
+-   docker-compose
+
+# Importing source code into local environment
+
+```
+git clone https://github.com/43z708/aptos-incentivized-testnet.git
+cd aptos-incentivized-testnet
+cp app/.env.example app/.env
+vi app/.env
+```
+
+Edit appropriately.
+Press "Esc", ":wq" and "Enter"
+
+# Prepare local execution environment
 
 docker-compose up -d
 
-# docker 内にログイン
+# Login in docker container
 
 docker-compose exec ubuntu bash
 
-# AWS 上に必要なリソースを作成
+# Create necessary resources on AWS
 
 ./scripts/terraform.sh && ./scripts/create-resource.sh
 
-# node を起動
+# Start nodes
 
 ./scripts/generate.sh
 
-# node の状態を確認
+# Check node status
 
 kubectl get pods
