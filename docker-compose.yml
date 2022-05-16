@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+    ubuntu:
+        build: .
+        volumes:
+            - ./:/app/testnet
+        tty: true
+        stdin_open: true
