@@ -1,1 +1,0 @@
-{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"aptos-node","Source":"git::https://github.com/aptos-labs/aptos-core.git?ref=main//terraform/aptos-node/aws","Dir":".terraform/modules/aptos-node/terraform/aptos-node/aws"}]}
