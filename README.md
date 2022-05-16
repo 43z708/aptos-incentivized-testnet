@@ -12,8 +12,8 @@ docker-compose exec ubuntu bash
 
 # node を起動
 
-docker-compose exec ubuntu /bin/sh -c ./scripts/generate.sh
+./scripts/generate.sh
 
 # node の状態を確認
 
-docker-compose exec ubuntu kubectl get pods
+kubectl get pods

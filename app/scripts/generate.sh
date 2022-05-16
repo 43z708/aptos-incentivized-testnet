@@ -4,16 +4,22 @@
 
 # Set variables
 export WORKSPACE=testnet
+aws eks update-kubeconfig --name aptos-$WORKSPACE
+kubectl get pods
+kubectl get svc
+echo $WORKSPACE
 
 export VALIDATOR_ADDRESS="$(kubectl get svc ${WORKSPACE}-aptos-node-validator-lb --output jsonpath='{.status.loadBalancer.ingress[0].hostname}')"
+echo $VALIDATOR_ADDRESS
 
 export FULLNODE_ADDRESS="$(kubectl get svc ${WORKSPACE}-aptos-node-fullnode-lb --output jsonpath='{.status.loadBalancer.ingress[0].hostname}')"
+echo $FULLNODE_ADDRESS
 
 # Generate key pairs
-aptos genesis generate-keys --output-dir ~/$WORKSPACE
+aptos genesis generate-keys --output-dir /app/$WORKSPACE
 
 # Configure validator information
-aptos genesis set-validator-configuration --keys-dir ~/$WORKSPACE --local-repository-dir ~/$WORKSPACE --username $VALIDATOR_NAME --validator-host $VALIDATOR_ADDRESS:6180 --full-node-host $FULLNODE_ADDRESS:6182
+aptos genesis set-validator-configuration --keys-dir /app/$WORKSPACE --local-repository-dir /app/$WORKSPACE --username $VALIDATOR_NAME --validator-host $VALIDATOR_ADDRESS:6180 --full-node-host $FULLNODE_ADDRESS:6182
 
 # Create layout YAML file, which defines the node in the validatorSet.
 cat <<EOF > layout.yaml
@@ -30,7 +36,7 @@ wget https://github.com/aptos-labs/aptos-core/releases/download/aptos-framework-
 unzip framework.zip
 
 # Compile genesis blob and waypoint
-aptos genesis generate-genesis --local-repository-dir ~/$WORKSPACE --output-dir ~/$WORKSPACE
+aptos genesis generate-genesis --local-repository-dir /app/$WORKSPACE --output-dir /app/$WORKSPACE
 
 # Insert genesis.blob, waypoint.txt and the identity files as secret into k8s cluster
 kubectl create secret generic ${WORKSPACE}-aptos-node-genesis-e1 \
