@@ -25,5 +25,6 @@ module "aptos-node" {
   chain_id      = 23
   image_tag     = "testnet" # Specify the docker image tag to use
   validator_name = "$VALIDATOR_NAME"
+  helm_values = {"validator": {"exposeRestApi" : true}}
 }
 EOF
