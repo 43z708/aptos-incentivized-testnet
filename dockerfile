@@ -25,9 +25,9 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone &
 
 WORKDIR /app/testnet
 
-COPY ./app/.env .
-COPY app/scripts/ ./scripts/
+COPY src/.env .
+COPY src/scripts/ ./scripts/
 
 RUN mkdir -p ~/.aws && chmod +x scripts/credentials.sh &&\
     ./scripts/credentials.sh &&\
-    chmod +x scripts/terraform.sh && chmod +x scripts/create-resource.sh
+    chmod +x ./scripts/terraform.sh && chmod +x ./scripts/create-resource.sh

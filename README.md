@@ -15,8 +15,8 @@
 ```
 git clone https://github.com/43z708/aptos-incentivized-testnet.git
 cd aptos-incentivized-testnet
-cp app/.env.example app/.env
-vi app/.env
+cp src/.env.example src/.env
+vi src/.env
 ```
 
 Edit appropriately.
