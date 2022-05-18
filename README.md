@@ -30,14 +30,10 @@ docker-compose up -d
 
 docker-compose exec ubuntu bash
 
-# Create necessary resources on AWS
+# Create necessary resources on AWS and start nodes
 
-./scripts/terraform.sh && ./scripts/create-resource.sh
+./scripts/start.sh
 
-# Start nodes
-
-./scripts/generate.sh
-
-# Check node status
+# Check node status(require few minutes)
 
 kubectl get pods
