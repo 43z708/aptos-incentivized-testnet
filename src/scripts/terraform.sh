@@ -26,5 +26,6 @@ module "aptos-node" {
   image_tag     = "testnet" # Specify the docker image tag to use
   validator_name = "$VALIDATOR_NAME"
   helm_values = {"validator": {"exposeRestApi" : true}}
+  max_node_pool_surge = 2
 }
 EOF
