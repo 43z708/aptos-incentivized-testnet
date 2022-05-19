@@ -30,4 +30,4 @@ COPY src/scripts/ ./scripts/
 
 RUN mkdir -p ~/.aws && chmod +x scripts/credentials.sh &&\
     ./scripts/credentials.sh &&\
-    chmod +x ./scripts/terraform.sh && chmod +x ./scripts/create-resource.sh && chmod +x ./scripts/generate.sh
+    chmod +x ./scripts/terraform.sh && chmod +x ./scripts/create-resource.sh && chmod +x ./scripts/generate.sh && chmod +x ./scripts/start.sh
